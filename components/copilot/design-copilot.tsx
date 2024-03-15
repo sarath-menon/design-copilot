@@ -13,17 +13,19 @@ export default function DesignCopilot() {
     setElement(element);
   }
 
-  function dragstartHandler(ev) {
-    // Add the target element's id to the data transfer object
-    ev.dataTransfer.setData("text/plain", ev.target.id);
-  }
-
   useEffect(() => {
     const handleContextMenu = (event: MouseEvent) => {
       var x = event.clientX; // Get the horizontal coordinate
       var y = event.clientY; // Get the vertical coordinate
 
       console.log("Screen position: " + x + ", " + y);
+    };
+
+    const dragstartHandler = (event: DragEvent) => {
+      // Add the target element's id to the data transfer object
+      event?.dataTransfer?.setData("text/plain", event.target.id);
+
+      console.log("Drag event:", event);
     };
 
     const elementDrag = (event) => {
