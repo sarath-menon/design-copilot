@@ -67,11 +67,11 @@ export default function DesignCopilot() {
   }
 
   function div1ParaElems() {
-    const div1 = document.getElementById("main1");
-    const div1Paras = div1?.getElementsByTagName("div");
-    const num = div1Paras?.length;
+    const main = document.getElementById("main");
+    const sections = main?.getElementsByTagName("section");
+    const numSections = sections?.length;
 
-    console.log(div1Paras[0]);
+    console.log(numSections);
   }
 
   return (
