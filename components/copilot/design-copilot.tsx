@@ -8,18 +8,20 @@ export default function DesignCopilot() {
   function handleRightClick(event: MouseEvent) {
     const elementId = event.target.id;
     console.log(elementId);
+    console.log(event);
 
     const element = document.getElementById(elementId);
     setElement(element);
   }
 
   useEffect(() => {
-    const handleContextMenu = (event: MouseEvent) => {
-      var x = event.clientX; // Get the horizontal coordinate
-      var y = event.clientY; // Get the vertical coordinate
+    // const handleContextMenu = (event: MouseEvent) => {
+    //   var x = event.clientX; // Get the horizontal coordinate
+    //   var y = event.clientY; // Get the vertical coordinate
 
-      console.log("Screen position: " + x + ", " + y);
-    };
+    //   console.log("Screen position: " + x + ", " + y);
+    //   console.log(event);
+    // };
 
     const dragstartHandler = (event: DragEvent) => {
       // Add the target element's id to the data transfer object
@@ -37,12 +39,12 @@ export default function DesignCopilot() {
 
     window.addEventListener("DOMContentLoaded", elementDrag);
 
-    document.addEventListener("contextmenu", handleContextMenu);
+    // document.addEventListener("contextmenu", handleContextMenu);
     document.addEventListener("contextmenu", handleRightClick);
 
     return () => {
       window.removeEventListener("DOMContentLoaded", elementDrag);
-      document.removeEventListener("contextmenu", handleContextMenu);
+      // document.removeEventListener("contextmenu", handleContextMenu);
       document.removeEventListener("contextmenu", handleRightClick);
     };
   }, []); // Empty dependency array means this effect will only run once, after the component mounts
