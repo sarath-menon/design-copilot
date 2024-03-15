@@ -66,14 +66,22 @@ export default function DesignCopilot() {
     // console.log(data.output.content);
   }
 
+  function div1ParaElems() {
+    const div1 = document.getElementById("main1");
+    const div1Paras = div1?.getElementsByTagName("div");
+    const num = div1Paras?.length;
+
+    console.log(div1Paras[0]);
+  }
+
   return (
-    <div>
-      <Button
-        id={nanoid()}
-        className="absolute top-0 left-0"
-        onClick={testHandleClick}
-      >
+    <div className="flex absolute top-0 left-0">
+      <Button id={nanoid()} onClick={testHandleClick}>
         Shadcn Button
+      </Button>
+
+      <Button id={nanoid()} onClick={div1ParaElems}>
+        Show Tags
       </Button>
     </div>
   );
