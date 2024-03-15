@@ -13,6 +13,11 @@ export default function DesignCopilot() {
     setElement(element);
   }
 
+  function dragstartHandler(ev) {
+    // Add the target element's id to the data transfer object
+    ev.dataTransfer.setData("text/plain", ev.target.id);
+  }
+
   useEffect(() => {
     const handleContextMenu = (event: MouseEvent) => {
       var x = event.clientX; // Get the horizontal coordinate
@@ -21,10 +26,20 @@ export default function DesignCopilot() {
       console.log("Screen position: " + x + ", " + y);
     };
 
+    const elementDrag = (event) => {
+      // Get the element by id
+      const element = document.getElementById("selva_btn");
+      // Add the ondragstart event listener
+      element?.addEventListener("dragstart", dragstartHandler);
+    };
+
+    window.addEventListener("DOMContentLoaded", elementDrag);
+
     document.addEventListener("contextmenu", handleContextMenu);
     document.addEventListener("contextmenu", handleRightClick);
 
     return () => {
+      window.removeEventListener("DOMContentLoaded", elementDrag);
       document.removeEventListener("contextmenu", handleContextMenu);
       document.removeEventListener("contextmenu", handleRightClick);
     };
