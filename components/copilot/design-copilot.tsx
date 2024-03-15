@@ -1,13 +1,13 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { nanoid } from "nanoid";
 import { useEffect, useState } from "react";
+import { nanoid } from "nanoid";
 
 export default function DesignCopilot() {
   function handleRightClick(event: MouseEvent) {
     const elementId = event.target.id;
-    // console.log(elementId);
+    console.log(elementId);
 
     const element = document.getElementById(elementId);
     setElement(element);
@@ -33,8 +33,9 @@ export default function DesignCopilot() {
   const [element, setElement] = useState<HTMLElement | null>(null);
 
   async function testHandleClick() {
+    console.log(element);
     // console.log(element?.classList);
-    console.log(element?.getAttribute("class"));
+    // console.log(element?.getAttribute("class"));
 
     // element?.classList.add("bg-red-500");
 
@@ -49,7 +50,7 @@ export default function DesignCopilot() {
   return (
     <div>
       <Button
-        // id={nanoid()}
+        id={nanoid()}
         className="absolute top-0 left-0"
         onClick={testHandleClick}
       >
