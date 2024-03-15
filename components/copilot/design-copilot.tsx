@@ -1,10 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { nanoid } from "nanoid";
-import { invokeLangserve } from "@/components/design-copilot/langserve";
-import { getCopilotOutput } from "@/components/design-copilot/copilot";
+import { useEffect, useState } from "react";
 
 export default function DesignCopilot() {
   function handleRightClick(event: MouseEvent) {
@@ -16,18 +14,19 @@ export default function DesignCopilot() {
   }
 
   useEffect(() => {
-    // const handleContextMenu = (event: MouseEvent) => {
-    //   var x = event.clientX; // Get the horizontal coordinate
-    //   var y = event.clientY; // Get the vertical coordinate
+    const handleContextMenu = (event: MouseEvent) => {
+      var x = event.clientX; // Get the horizontal coordinate
+      var y = event.clientY; // Get the vertical coordinate
 
-    //   console.log("Screen position: " + x + ", " + y);
-    // };
+      console.log("Screen position: " + x + ", " + y);
+    };
 
-    addEventListener("contextmenu", handleRightClick);
+    document.addEventListener("contextmenu", handleContextMenu);
+    document.addEventListener("contextmenu", handleRightClick);
 
     return () => {
-      //   document.removeEventListener("contextmenu", handleContextMenu);
-      removeEventListener("contextmenu", handleRightClick);
+      document.removeEventListener("contextmenu", handleContextMenu);
+      document.removeEventListener("contextmenu", handleRightClick);
     };
   }, []); // Empty dependency array means this effect will only run once, after the component mounts
 
@@ -50,7 +49,7 @@ export default function DesignCopilot() {
   return (
     <div>
       <Button
-        id={nanoid()}
+        // id={nanoid()}
         className="absolute top-0 left-0"
         onClick={testHandleClick}
       >
