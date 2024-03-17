@@ -21,11 +21,7 @@ import dynamic from "next/dynamic";
 
 export default function HeroSection() {
   return (
-    <section
-      id="section1"
-      //   draggable="true"
-      //   className="border hover:cursor-pointer hover:border-gray-500"
-    >
+    <section id="section1">
       <div
         id="div1"
         draggable="true"
@@ -38,15 +34,7 @@ export default function HeroSection() {
         >
           Selva
         </h1>
-
-        <Button id="selva_btn" draggable="true">
-          Click me
-        </Button>
-
-        <Calendar />
       </div>
-
-      {/* <DynamicXtermTerminal /> */}
     </section>
   );
 }
