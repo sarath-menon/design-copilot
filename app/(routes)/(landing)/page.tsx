@@ -4,6 +4,8 @@ import { CardWithForm } from "@/components/cards/demo-card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Wireframe } from "@/components/ui/wireframe";
 
+import CloneBtn from "@/app/(routes)/(landing)/_components/clone-btn";
+
 export default function Home() {
   return (
     <main id="main" className="flex min-h-screen flex-col items-center p-24">
@@ -15,6 +17,8 @@ export default function Home() {
 
       <div>
         <CardWithForm />
+
+        <CloneBtn />
       </div>
     </main>
   );
