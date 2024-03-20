@@ -11,9 +11,9 @@ export default function Home() {
     <main id="main" className="flex min-h-screen flex-col items-center p-24">
       <HeroSection />
 
-      <div className="flex justify-center space-x-4 animate-none">
+      {/* <div className="flex justify-center space-x-4 animate-none">
         <Wireframe height="200" width="200" text="selva" />
-      </div>
+      </div> */}
 
       <div>
         <CardWithForm />
