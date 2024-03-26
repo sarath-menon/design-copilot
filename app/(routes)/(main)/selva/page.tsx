@@ -10,7 +10,7 @@ export default async function RemoteMdxPage() {
 
   return (
     <div className="prose bg-white">
-      <MDXRemote source={source} components={components} />;
+      <MDXRemote source={source} components={components} />
       {/* <CardWithForm /> */}
     </div>
   );
