@@ -18,7 +18,7 @@ export default function Home() {
       <div>
         <CardWithForm />
 
-        <CloneBtn />
+        {/* <CloneBtn /> */}
       </div>
     </main>
   );
