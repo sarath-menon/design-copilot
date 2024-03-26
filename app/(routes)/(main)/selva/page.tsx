@@ -9,7 +9,7 @@ export default async function RemoteMdxPage() {
   const res = await serialize(source);
 
   return (
-    <div className="prose bg-white">
+    <div className="prose-invert">
       <MDXRemote source={source} components={components} />
       {/* <CardWithForm /> */}
     </div>
