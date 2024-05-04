@@ -8,22 +8,12 @@ import CloneBtn from "@/app/(routes)/(landing)/_components/clone-btn";
 
 export default function Home() {
   return (
-    <main id="main" className="flex min-h-screen flex-col items-center p-24">
-      <HeroSection />
-
-      {/* <div className="flex justify-center space-x-4 animate-none">
-        <Wireframe height="200" width="200" text="selva" />
-      </div> */}
-
-      <div>
+    <main id="main" className="grid grid-cols-2 min-h-screen p-24">
+      <div className="flex justify-center items-center ">
         <CardWithForm />
-
-        {/* <CloneBtn /> */}
       </div>
-      {/* <iframe
-        className="w-full h-screen"
-        src="https://stackblitz.com/edit/stackblitz-starters-culmrb?embed=1&file=package.json&hideExplorer=1"
-      ></iframe> */}
+
+      <iframe src="/selva" title="Iframe Example"></iframe>
     </main>
   );
 }
