@@ -1,3 +1,5 @@
+"use client";
+
 import * as React from "react";
 
 import { Button } from "@/components/ui/button";
@@ -20,8 +22,49 @@ import {
 } from "@/components/ui/select";
 
 export function CardWithForm() {
+  function handleElementMouseOver(event: MouseEvent) {
+    const target = event.target as HTMLElement;
+    const dataId = target.getAttribute("data-id");
+
+    if (dataId) {
+      console.log(`Mouse over element with data-id: ${dataId}`);
+      target.style.position = "relative";
+      target.style.zIndex = "10";
+      target.style.backgroundColor = "rgba(0, 0, 255, 0.2)";
+    }
+  }
+
+  function handleElementMouseOut(event: MouseEvent) {
+    const target = event.target as HTMLElement;
+    target.style.backgroundColor = "";
+    target.style.zIndex = "";
+    target.style.position = "";
+  }
+
+  React.useEffect(() => {
+    const cardElement = document.getElementById("card");
+
+    if (cardElement) {
+      const childElements = cardElement.querySelectorAll("*");
+
+      childElements.forEach((element, index) => {
+        element.setAttribute("data-id", `${index}`);
+      });
+
+      cardElement.addEventListener("mouseover", handleElementMouseOver);
+      cardElement.addEventListener("mouseout", handleElementMouseOut);
+    }
+
+    return () => {
+      if (cardElement) {
+        cardElement.removeEventListener("mouseover", handleElementMouseOver);
+        cardElement.removeEventListener("mouseout", handleElementMouseOut);
+      }
+    };
+  }, []);
+
   return (
-    <Card className="w-[350px]">
+    <Card id="card" className="w-[350px]">
       <CardHeader>
         <CardTitle>Create project</CardTitle>
         <CardDescription>Deploy your new project in one-click.</CardDescription>
