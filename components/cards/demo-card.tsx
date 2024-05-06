@@ -25,20 +25,32 @@ export function CardWithForm() {
   function handleElementMouseOver(event: MouseEvent) {
     const target = event.target as HTMLElement;
     const dataId = target.getAttribute("data-id");
+    const cardElement = document.getElementById("card");
+    const overlay = document.createElement("div");
+    overlay.id = "overlay";
+    overlay.className =
+      "absolute transition-all pointer-events-none z-[9998] border-dashed border-2 border-blue-500 bg-blue-400/40 rounded-lg";
 
-    if (dataId) {
+    if (dataId && cardElement) {
       console.log(`Mouse over element with data-id: ${dataId}`);
-      target.style.position = "relative";
-      target.style.zIndex = "10";
-      target.style.backgroundColor = "rgba(0, 0, 255, 0.2)";
+
+      overlay.style.left = `${target.offsetLeft}px`;
+      overlay.style.top = `${target.offsetTop}px`;
+      overlay.style.width = `${target.offsetWidth}px`;
+      overlay.style.height = `${target.offsetHeight}px`;
+
+      cardElement.appendChild(overlay);
     }
   }
 
   function handleElementMouseOut(event: MouseEvent) {
     const target = event.target as HTMLElement;
-    target.style.backgroundColor = "";
-    target.style.zIndex = "";
-    target.style.position = "";
+    const overlay = document.getElementById("overlay");
+
+    const cardElement = document.getElementById("card");
+    if (cardElement && overlay && overlay.parentNode === cardElement) {
+      cardElement.removeChild(overlay);
+    }
   }
 
   React.useEffect(() => {
