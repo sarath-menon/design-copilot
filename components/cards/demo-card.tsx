@@ -24,6 +24,8 @@ import { ComponentOverlayProps } from "@/app/types/nav";
 import ComponentOverlay from "@/components/component-overlay";
 
 export function CardWithForm() {
+  let root: any = null; // Declare root outside the function to maintain its state across renders
+
   function handleElementMouseOver(event: MouseEvent) {
     const target = event.target as HTMLElement;
     const elementType = target.tagName;
@@ -40,9 +42,9 @@ export function CardWithForm() {
         overlayContainer = document.createElement("div");
         overlayContainer.id = "overlay-container";
         cardElement.appendChild(overlayContainer);
+        root = createRoot(overlayContainer);
       }
 
-      const root = createRoot(overlayContainer);
       root.render(
         <ComponentOverlay target={target} elementType={elementType} />
       );
