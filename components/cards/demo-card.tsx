@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-
+import { createRoot } from "react-dom/client";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -20,6 +20,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { ComponentOverlayProps } from "@/app/types/nav";
+import ComponentOverlay from "@/components/component-overlay";
 
 export function CardWithForm() {
   function handleElementMouseOver(event: MouseEvent) {
@@ -28,29 +30,22 @@ export function CardWithForm() {
 
     const dataId = target.getAttribute("data-id");
     const cardElement = document.getElementById("card");
-    const overlay = document.createElement("div");
-
-    overlay.id = "overlay";
-    overlay.className =
-      "absolute transition-all pointer-events-none z-[9998] border-dashed border-2 border-blue-500 bg-blue-400/40 rounded-lg";
 
     if (dataId && cardElement) {
       console.log(`Mouse over element with data-id: ${dataId}`);
 
-      overlay.style.left = `${target.offsetLeft}px`;
-      overlay.style.top = `${target.offsetTop}px`;
-      overlay.style.width = `${target.offsetWidth}px`;
-      overlay.style.height = `${target.offsetHeight}px`;
+      // Ensure there is a container for the overlay
+      let overlayContainer = document.getElementById("overlay-container");
+      if (!overlayContainer) {
+        overlayContainer = document.createElement("div");
+        overlayContainer.id = "overlay-container";
+        cardElement.appendChild(overlayContainer);
+      }
 
-      // to display the element type
-      const elementTypeDiv = document.createElement("div");
-      elementTypeDiv.textContent = elementType.toLowerCase();
-
-      elementTypeDiv.className =
-        "absolute left-0 top-0 origin-bottom translate-y-[-100%] text-white p-1 text-xs bg-blue-800 bg-opacity-90 rounded";
-      overlay.appendChild(elementTypeDiv);
-
-      cardElement.appendChild(overlay);
+      const root = createRoot(overlayContainer);
+      root.render(
+        <ComponentOverlay target={target} elementType={elementType} />
+      );
     }
   }
 
