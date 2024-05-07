@@ -62,10 +62,10 @@ export default function EditBoxSmall() {
           <Button
             onClick={onSubmit}
             size="sm"
-            className="ml-auto gap-1.5 text-sm h-5 mr-4"
+            className="ml-auto gap-1 text-xs p-2 h-5 mr-4"
           >
             Edit
-            <CornerDownLeftIcon className="size-3.5 " />
+            <CornerDownLeftIcon className="size-2.5 " />
           </Button>
         </div>
       </TooltipProvider>
