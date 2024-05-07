@@ -31,7 +31,7 @@ export default function EditBoxSmall() {
 
   return (
     <div
-      className="relative overflow-hidden rounded-lg border bg-background focus-within:ring-1 focus-within:ring-ring"
+      className="relative overflow-hidden rounded-lg border border-neutral-600 bg-background"
       x-chunk="dashboard-03-chunk-1"
       onKeyDown={(e) => {
         if (e.key === "Enter") {
@@ -42,13 +42,13 @@ export default function EditBoxSmall() {
     >
       <Textarea
         id="message"
-        // placeholder="Type your message here..."
-        className="min-h-8 resize-none border-0 p-3 shadow-none focus-visible:ring-0"
+        placeholder="Editing instructions..."
+        className="min-h-12 h-12 resize-none border p-3 shadow-none  focus-visible:ring-0"
         autoFocus
       />
 
       <TooltipProvider>
-        <div className="flex items-center p-3 pt-0 min-w-[300px]">
+        <div className="flex items-center pt-0 min-w-[300px]">
           <Tooltip>
             <TooltipTrigger asChild>
               <Button variant="ghost" size="icon">
@@ -62,7 +62,7 @@ export default function EditBoxSmall() {
           <Button
             onClick={onSubmit}
             size="sm"
-            className="ml-auto gap-1.5 text-sm h-6"
+            className="ml-auto gap-1.5 text-sm h-5 mr-4"
           >
             Edit
             <CornerDownLeftIcon className="size-3.5 " />
