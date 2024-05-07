@@ -43,7 +43,7 @@ export default function EditBoxSmall() {
       <Textarea
         id="message"
         placeholder="Editing instructions..."
-        className="min-h-12 h-12 resize-none border p-3 shadow-none  focus-visible:ring-0"
+        className="min-h-12 h-12 resize-none border-none p-3 shadow-none  focus-visible:ring-0"
         autoFocus
       />
 
