@@ -24,9 +24,12 @@ import {
 export function CardWithForm() {
   function handleElementMouseOver(event: MouseEvent) {
     const target = event.target as HTMLElement;
+    const elementType = target.tagName;
+
     const dataId = target.getAttribute("data-id");
     const cardElement = document.getElementById("card");
     const overlay = document.createElement("div");
+
     overlay.id = "overlay";
     overlay.className =
       "absolute transition-all pointer-events-none z-[9998] border-dashed border-2 border-blue-500 bg-blue-400/40 rounded-lg";
@@ -38,6 +41,14 @@ export function CardWithForm() {
       overlay.style.top = `${target.offsetTop}px`;
       overlay.style.width = `${target.offsetWidth}px`;
       overlay.style.height = `${target.offsetHeight}px`;
+
+      // to display the element type
+      const elementTypeDiv = document.createElement("div");
+      elementTypeDiv.textContent = elementType.toLowerCase();
+
+      elementTypeDiv.className =
+        "absolute left-0 top-0 origin-bottom translate-y-[-100%] text-white p-1 text-xs bg-blue-800 bg-opacity-90 rounded";
+      overlay.appendChild(elementTypeDiv);
 
       cardElement.appendChild(overlay);
     }
