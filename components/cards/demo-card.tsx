@@ -26,43 +26,48 @@ import ComponentOverlay from "@/components/component-overlay";
 export function CardWithForm() {
   let root: any = null; // Declare root outside the function to maintain its state across renders
 
-  function handleElementMouseOver(event: MouseEvent) {
-    const target = event.target as HTMLElement;
-    const elementType = target.tagName;
-
-    const dataId = target.getAttribute("data-id");
-    const cardElement = document.getElementById("card");
-
-    if (dataId && cardElement) {
-      console.log(`Mouse over element with data-id: ${dataId}`);
-
-      // Ensure there is a container for the overlay
-      let overlayContainer = document.getElementById("overlay-container");
-      if (!overlayContainer) {
-        overlayContainer = document.createElement("div");
-        overlayContainer.id = "overlay-container";
-        cardElement.appendChild(overlayContainer);
-        root = createRoot(overlayContainer);
-      }
-
-      root.render(
-        <ComponentOverlay target={target} elementType={elementType} />
-      );
-    }
-  }
-
-  function handleElementMouseOut(event: MouseEvent) {
-    const target = event.target as HTMLElement;
-    const overlay = document.getElementById("overlay");
-
-    const cardElement = document.getElementById("card");
-    if (cardElement && overlay && overlay.parentNode === cardElement) {
-      cardElement.removeChild(overlay);
-    }
-  }
-
   React.useEffect(() => {
     const cardElement = document.getElementById("card");
+
+    function handleDocumentClick(event: MouseEvent) {
+      const cardElement = document.getElementById("card");
+      const overlayContainer = document.getElementById("overlay-container");
+
+      // Check if the click is outside the card element
+      if (
+        cardElement &&
+        overlayContainer &&
+        !cardElement.contains(event.target as Node)
+      ) {
+        root.unmount(); // Unmount the ComponentOverlay
+        cardElement.removeChild(overlayContainer); // Remove the overlay container
+      }
+    }
+
+    function handleElementMouseOver(event: MouseEvent) {
+      const target = event.target as HTMLElement;
+      const elementType = target.tagName;
+
+      const dataId = target.getAttribute("data-id");
+      const cardElement = document.getElementById("card");
+
+      if (dataId && cardElement) {
+        console.log(`Mouse over element with data-id: ${dataId}`);
+
+        // Ensure there is a container for the overlay
+        let overlayContainer = document.getElementById("overlay-container");
+        if (!overlayContainer) {
+          overlayContainer = document.createElement("div");
+          overlayContainer.id = "overlay-container";
+          cardElement.appendChild(overlayContainer);
+          root = createRoot(overlayContainer);
+        }
+
+        root.render(
+          <ComponentOverlay target={target} elementType={elementType} />
+        );
+      }
+    }
 
     if (cardElement) {
       const childElements = cardElement.querySelectorAll("*");
@@ -72,16 +77,16 @@ export function CardWithForm() {
       });
 
       cardElement.addEventListener("mouseover", handleElementMouseOver);
-      cardElement.addEventListener("mouseout", handleElementMouseOut);
+      document.addEventListener("click", handleDocumentClick);
     }
 
     return () => {
       if (cardElement) {
         cardElement.removeEventListener("mouseover", handleElementMouseOver);
-        cardElement.removeEventListener("mouseout", handleElementMouseOut);
+        document.removeEventListener("click", handleDocumentClick);
       }
     };
-  }, []);
+  }, [root]);
 
   return (
     <Card id="card" className="w-[350px]">
