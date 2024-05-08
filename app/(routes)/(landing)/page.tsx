@@ -1,10 +1,4 @@
-import FeaturesSection from "@/app/(routes)/(landing)/_components/features-section";
-import HeroSection from "@/app/(routes)/(landing)/_components/hero-section";
 import { CardWithForm } from "@/components/cards/demo-card";
-import { Skeleton } from "@/components/ui/skeleton";
-import { Wireframe } from "@/components/ui/wireframe";
-
-import CloneBtn from "@/app/(routes)/(landing)/_components/clone-btn";
 
 export default function Home() {
   return (
@@ -13,7 +7,7 @@ export default function Home() {
         <CardWithForm />
       </div>
 
-      <iframe src="/selva" title="Iframe Example"></iframe>
+      <iframe className="h-full" src="/viewer" title="Iframe Example"></iframe>
     </main>
   );
 }
