@@ -4,7 +4,7 @@ import { CardWithForm } from "@/components/cards/demo-card";
 
 export default async function RemoteMdxPage() {
   return (
-    <div>
+    <div className="flex justify-center items-center h-screen ">
       <CardWithForm />
     </div>
   );

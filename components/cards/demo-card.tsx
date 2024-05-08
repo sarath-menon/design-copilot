@@ -24,7 +24,7 @@ import { ComponentOverlayProps } from "@/app/types/nav";
 import ComponentOverlay from "@/components/component-overlay";
 
 export function CardWithForm() {
-  let root: any = null; // Declare root outside the function to maintain its state across renders
+  const rootRef = React.useRef<any>(null); // Declare root outside the function to maintain its state across renders
 
   React.useEffect(() => {
     const cardElement = document.getElementById("card");
@@ -39,7 +39,7 @@ export function CardWithForm() {
         overlayContainer &&
         !cardElement.contains(event.target as Node)
       ) {
-        root.unmount(); // Unmount the ComponentOverlay
+        rootRef.current.unmount(); // Unmount the ComponentOverlay
         cardElement.removeChild(overlayContainer); // Remove the overlay container
       }
     }
@@ -52,7 +52,7 @@ export function CardWithForm() {
       const cardElement = document.getElementById("card");
 
       if (dataId && cardElement) {
-        console.log(`Mouse over element with data-id: ${dataId}`);
+        // console.log(`Mouse over element with data-id: ${dataId}`);
 
         // Ensure there is a container for the overlay
         let overlayContainer = document.getElementById("overlay-container");
@@ -60,10 +60,10 @@ export function CardWithForm() {
           overlayContainer = document.createElement("div");
           overlayContainer.id = "overlay-container";
           cardElement.appendChild(overlayContainer);
-          root = createRoot(overlayContainer);
+          rootRef.current = createRoot(overlayContainer);
         }
 
-        root.render(
+        rootRef.current.render(
           <ComponentOverlay target={target} elementType={elementType} />
         );
       }
@@ -86,7 +86,7 @@ export function CardWithForm() {
         document.removeEventListener("click", handleDocumentClick);
       }
     };
-  }, [root]);
+  }, [rootRef]);
 
   return (
     <Card id="card" className="w-[350px]">
