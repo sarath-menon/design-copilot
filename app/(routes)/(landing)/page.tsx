@@ -7,7 +7,11 @@ export default function Home() {
         <CardWithForm />
       </div>
 
-      <iframe className="h-full" src="/viewer" title="Iframe Example"></iframe>
+      <iframe
+        className="h-full w-full"
+        src="/viewer"
+        title="Iframe Example"
+      ></iframe>
     </main>
   );
 }
