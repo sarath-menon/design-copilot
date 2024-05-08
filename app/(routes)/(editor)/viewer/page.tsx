@@ -1,11 +1,9 @@
-import { MDXRemote } from "next-mdx-remote/rsc";
-import { serialize } from "next-mdx-remote/serialize";
-import { CardWithForm } from "@/components/cards/demo-card";
+import { V0Container } from "@/components/v0-container";
 
 export default async function RemoteMdxPage() {
   return (
     <div className="flex justify-center items-center h-screen ">
-      <CardWithForm />
+      <V0Container />
     </div>
   );
 }
