@@ -15,6 +15,12 @@
 */
 export function parseSync(source_text: string, options?: ParserOptions): ParseResult;
 /**
+* @param {string} source_text
+* @param {ParserOptions | undefined} [options]
+* @returns {ParseResult2}
+*/
+export function getFileInfo(source_text: string, options?: ParserOptions): ParseResult2;
+/**
 * @param {number} a
 * @param {number} b
 * @returns {number}
@@ -27,6 +33,11 @@ export interface ParserOptions {
 
 export interface ParseResult {
     program: Program;
+    errors: Diagnostic[];
+}
+
+export interface ParseResult2 {
+    file_info_serialized: Program;
     errors: Diagnostic[];
 }
 
@@ -1345,5 +1356,10 @@ export interface SourceType {
 /**
 */
 export class ParseResult {
+  free(): void;
+}
+/**
+*/
+export class ParseResult2 {
   free(): void;
 }
