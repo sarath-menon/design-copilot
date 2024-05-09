@@ -1,4 +1,5 @@
 import { CardWithForm } from "@/components/cards/demo-card";
+import { WasmDemo } from "@/components/wasm-demo";
 
 export default function Home() {
   return (
@@ -12,6 +13,8 @@ export default function Home() {
         src="/viewer"
         title="Iframe Example"
       ></iframe>
+
+      <WasmDemo number={1} />
     </main>
   );
 }
