@@ -1,11 +1,7 @@
 import React from "react";
 import { promises as fs } from "fs";
 
-import * as wasm from "../public/wasm/index_bg.wasm";
-import { __wbg_set_wasm } from "../public/wasm/index_bg.js";
-__wbg_set_wasm(wasm);
-export * from "../public/wasm/index_bg.js";
-import { parseSync, add, getFileInfo } from "../public/wasm/index_bg.js";
+import * as wasm_module from "../public/wasm/index";
 
 export async function WasmDemo({ number }: { number: number }) {
   const code = await fs.readFile(
@@ -13,11 +9,14 @@ export async function WasmDemo({ number }: { number: number }) {
     "utf8"
   );
 
+  const { parseSync, add, getFileInfo } = wasm_module;
+
   const startTime = performance.now();
   const result = getFileInfo(code, {
     sourceFilename: "card.tsx",
     sourceType: "script",
   });
+
   //   const result = parseSync(code);
   const endTime = performance.now();
 
