@@ -1,20 +1,29 @@
-import { CardWithForm } from "@/components/cards/demo-card";
-import { WasmDemo } from "@/components/wasm-demo";
+import ChatBox from "@/app/(routes)/library/_components/chat-box";
+import {
+  PageHeader,
+  PageHeaderDescription,
+  PageHeaderHeading,
+} from "@/components/page-header";
+import WasmDemo from "@/components/wasm-demo";
+import { Suspense } from "react";
 
-export default function Home() {
+export default function LandingPage() {
   return (
-    <main id="main" className="grid grid-cols-2 min-h-screen p-24">
-      <div className="flex justify-center items-center ">
-        <CardWithForm />
-      </div>
+    <div className="container relative  min-h-screen">
+      <PageHeader className="mt-32">
+        <PageHeaderHeading>Build your component library</PageHeaderHeading>
+        <PageHeaderDescription>
+          Prompts to react components, instantly.
+        </PageHeaderDescription>
+      </PageHeader>
 
-      <iframe
-        className="h-full w-full"
-        src="/viewer"
-        title="Iframe Example"
-      ></iframe>
+      <section className="flex items-center justify-center ">
+        <ChatBox />
+      </section>
 
-      <WasmDemo number={1} />
-    </main>
+      <Suspense fallback={<p>Loading feed...</p>}>
+        <WasmDemo number={2} />
+      </Suspense>
+    </div>
   );
 }

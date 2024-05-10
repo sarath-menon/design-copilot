@@ -1,6 +1,6 @@
 "use client";
 
-import { ComponentOverlayProps } from "@/app/types/nav";
+import { ComponentOverlayProps } from "@/app/types/fs";
 import EditBoxSmall from "@/components/edit-boxes/edit-box-small";
 import { useEffect, useRef, useState } from "react";
 

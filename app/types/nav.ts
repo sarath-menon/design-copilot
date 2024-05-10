@@ -1,4 +1,4 @@
-import { Icons } from "@/components/ui/icons";
+import { Icons } from "@/components/icons";
 
 export interface NavItem {
   title: string;
@@ -16,8 +16,3 @@ export interface NavItemWithChildren extends NavItem {
 export interface MainNavItem extends NavItem {}
 
 export interface SidebarNavItem extends NavItemWithChildren {}
-
-export interface ComponentOverlayProps {
-  target: HTMLElement;
-  elementType: string;
-}

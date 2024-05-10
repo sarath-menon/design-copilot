@@ -11,7 +11,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { CornerDownLeftIcon, MicIcon, PaperclipIcon } from "lucide-react";
 import { useEffect, useState } from "react";
-// import { getData } from "./action";
+// import { getComponentInfo } from "./action";
 // import { writeTextFile, BaseDirectory } from "@tauri-apps/api/fs";
 // import { useStore } from "@/store/store";
 
@@ -22,7 +22,7 @@ export default function EditBoxSmall() {
   // 2. Define a submit handler.
 
   async function onSubmit() {
-    // const data = await getData(question, currentComponent.path);
+    // const data = await getComponentInfo(question, currentComponent.path);
     // // writeToFile(data);
     // console.log("Data:", data);
     // // clear the chatbox

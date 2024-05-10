@@ -3,9 +3,10 @@ import { promises as fs } from "fs";
 
 import * as wasm_module from "../public/wasm/index";
 
-export async function WasmDemo({ number }: { number: number }) {
+export default async function WasmDemo({ number }: { number: number }) {
   const code = await fs.readFile(
-    process.cwd() + "/components/cards/demo-card.tsx",
+    process.cwd() +
+      "/lib/ui/apps/www/__registry__/default/example/card-demo.tsx",
     "utf8"
   );
 
