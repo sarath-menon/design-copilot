@@ -2,9 +2,6 @@
 /* eslint-disable */
 /**
 */
-export function add_dom_element(): void;
-/**
-*/
 export function mouse_listener(): void;
 /**
 * @param {string} user
@@ -37,6 +34,32 @@ export function getFileInfo(source_text: string, options?: ParserOptions): Parse
 * @returns {number}
 */
 export function add(a: number, b: number): number;
+/**
+* @returns {string}
+*/
+export function test(): string;
+export interface ParserOptions {
+    sourceType?: "script" | "module";
+    sourceFilename?: string;
+}
+
+export interface ParseResult {
+    program: Program;
+    errors: Diagnostic[];
+}
+
+export interface ParseResult2 {
+    file_info_serialized: FileInfo;
+    errors: Diagnostic[];
+}
+
+export interface Diagnostic {
+    start: number;
+    end: number;
+    severity: string;
+    message: string;
+}
+
 
 export interface BindingIdentifier extends Span { type: "Identifier", name: Atom }
 export interface IdentifierReference extends Span { type: "Identifier", name: Atom }
@@ -1281,6 +1304,45 @@ export interface JSXElement extends Span {
 }
 
 
+export type AstNodeId = number;
+export type NodeFlags = {
+    JSDoc: 1,
+    Class: 2,
+    HasYield: 4
+};
+
+
+
+export type SymbolId = number;
+export type SymbolFlags = unknown;
+
+
+
+export type ReferenceId = number;
+export type ReferenceFlag = {
+    None: 0,
+    Read: 0b1,
+    Write: 0b10,
+    Type: 0b100,
+    ReadWrite: 0b11
+}
+
+
+
+export type ScopeId = number;
+
+
+export type UpdateOperator = "++" | "--";
+
+export type UnaryOperator = "-" | "+" | "!" | "~" | "typeof" | "void" | "delete";
+
+export type LogicalOperator = "||" | "&&" | "??";
+
+export type BinaryOperator = "==" | "!=" | "===" | "!==" | "<" | "<=" | ">" | ">=" | "<<" | ">>" | ">>>" | "+" | "-" | "*" | "/" | "%" | "|" | "^" | "&" | "in" | "instanceof" | "**";
+
+export type AssignmentOperator = "=" | "+=" | "-=" | "*=" | "/=" | "%=" | "<<=" | ">>=" | ">>>=" | "|=" | "^=" | "&=" | "&&=" | "||=" | "??=" | "**=";
+
+
 export type Atom = string;
 export type CompactStr = string;
 
@@ -1301,67 +1363,6 @@ export interface SourceType {
     moduleKind: ModuleKind;
     variant: LanguageVariant;
     alwaysStrict: boolean;
-}
-
-
-export type ScopeId = number;
-
-
-
-export type SymbolId = number;
-export type SymbolFlags = unknown;
-
-
-
-export type AstNodeId = number;
-export type NodeFlags = {
-    JSDoc: 1,
-    Class: 2,
-    HasYield: 4
-};
-
-
-
-export type ReferenceId = number;
-export type ReferenceFlag = {
-    None: 0,
-    Read: 0b1,
-    Write: 0b10,
-    Type: 0b100,
-    ReadWrite: 0b11
-}
-
-
-export type UpdateOperator = "++" | "--";
-
-export type UnaryOperator = "-" | "+" | "!" | "~" | "typeof" | "void" | "delete";
-
-export type LogicalOperator = "||" | "&&" | "??";
-
-export type BinaryOperator = "==" | "!=" | "===" | "!==" | "<" | "<=" | ">" | ">=" | "<<" | ">>" | ">>>" | "+" | "-" | "*" | "/" | "%" | "|" | "^" | "&" | "in" | "instanceof" | "**";
-
-export type AssignmentOperator = "=" | "+=" | "-=" | "*=" | "/=" | "%=" | "<<=" | ">>=" | ">>>=" | "|=" | "^=" | "&=" | "&&=" | "||=" | "??=" | "**=";
-
-export interface ParserOptions {
-    sourceType?: "script" | "module";
-    sourceFilename?: string;
-}
-
-export interface ParseResult {
-    program: Program;
-    errors: Diagnostic[];
-}
-
-export interface ParseResult2 {
-    file_info_serialized: FileInfo;
-    errors: Diagnostic[];
-}
-
-export interface Diagnostic {
-    start: number;
-    end: number;
-    severity: string;
-    message: string;
 }
 
 /**
