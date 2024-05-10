@@ -26,7 +26,7 @@ export default function LandingPage() {
         <WasmDemo number={2} />
       </Suspense>
 
-      <MouseListenerComponent number={2} />
+      {/* <MouseListenerComponent number={2} /> */}
     </div>
   );
 }
