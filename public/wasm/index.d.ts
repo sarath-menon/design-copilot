@@ -1,6 +1,17 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
+*/
+export function add_dom_element(): void;
+/**
+*/
+export function mouse_listener(): void;
+/**
+* @param {string} user
+* @returns {Promise<any>}
+*/
+export function api_call(user: string): Promise<any>;
+/**
 * # Errors
 *
 * * wasm bindgen serialization failed
@@ -26,28 +37,6 @@ export function getFileInfo(source_text: string, options?: ParserOptions): Parse
 * @returns {number}
 */
 export function add(a: number, b: number): number;
-export interface ParserOptions {
-    sourceType?: "script" | "module";
-    sourceFilename?: string;
-}
-
-export interface ParseResult {
-    program: Program;
-    errors: Diagnostic[];
-}
-
-export interface ParseResult2 {
-    file_info_serialized: Program;
-    errors: Diagnostic[];
-}
-
-export interface Diagnostic {
-    start: number;
-    end: number;
-    severity: string;
-    message: string;
-}
-
 
 export interface BindingIdentifier extends Span { type: "Identifier", name: Atom }
 export interface IdentifierReference extends Span { type: "Identifier", name: Atom }
@@ -1144,6 +1133,57 @@ export interface TSThisParameter extends Span {
     typeAnnotation: TSTypeAnnotation | null;
 }
 
+
+export type RegExpFlags = {
+    G: 1,
+    I: 2,
+    M: 4,
+    S: 8,
+    U: 16,
+    Y: 32,
+    D: 64,
+    V: 128
+};
+
+
+export interface StringLiteral extends Span {
+    type: "StringLiteral";
+    value: Atom;
+}
+
+export type EmptyObject = null;
+
+export interface RegExp {
+    pattern: Atom;
+    flags: RegExpFlags;
+}
+
+export interface RegExpLiteral extends Span {
+    type: "RegExpLiteral";
+    value: EmptyObject;
+    regex: RegExp;
+}
+
+export interface BigIntLiteral extends Span {
+    type: "BigIntLiteral";
+    raw: Atom;
+}
+
+export interface NumericLiteral extends Span {
+    type: "NumericLiteral";
+    value: number;
+    raw: string;
+}
+
+export interface NullLiteral extends Span {
+    type: "NullLiteral";
+}
+
+export interface BooleanLiteral extends Span {
+    type: "BooleanLiteral";
+    value: boolean;
+}
+
 export interface JSXText extends Span {
     type: "JSXText";
     value: Atom;
@@ -1241,96 +1281,6 @@ export interface JSXElement extends Span {
 }
 
 
-export type RegExpFlags = {
-    G: 1,
-    I: 2,
-    M: 4,
-    S: 8,
-    U: 16,
-    Y: 32,
-    D: 64,
-    V: 128
-};
-
-
-export interface StringLiteral extends Span {
-    type: "StringLiteral";
-    value: Atom;
-}
-
-export type EmptyObject = null;
-
-export interface RegExp {
-    pattern: Atom;
-    flags: RegExpFlags;
-}
-
-export interface RegExpLiteral extends Span {
-    type: "RegExpLiteral";
-    value: EmptyObject;
-    regex: RegExp;
-}
-
-export interface BigIntLiteral extends Span {
-    type: "BigIntLiteral";
-    raw: Atom;
-}
-
-export interface NumericLiteral extends Span {
-    type: "NumericLiteral";
-    value: number;
-    raw: string;
-}
-
-export interface NullLiteral extends Span {
-    type: "NullLiteral";
-}
-
-export interface BooleanLiteral extends Span {
-    type: "BooleanLiteral";
-    value: boolean;
-}
-
-
-export type ScopeId = number;
-
-
-
-export type ReferenceId = number;
-export type ReferenceFlag = {
-    None: 0,
-    Read: 0b1,
-    Write: 0b10,
-    Type: 0b100,
-    ReadWrite: 0b11
-}
-
-
-
-export type SymbolId = number;
-export type SymbolFlags = unknown;
-
-
-
-export type AstNodeId = number;
-export type NodeFlags = {
-    JSDoc: 1,
-    Class: 2,
-    HasYield: 4
-};
-
-
-export type UpdateOperator = "++" | "--";
-
-export type UnaryOperator = "-" | "+" | "!" | "~" | "typeof" | "void" | "delete";
-
-export type LogicalOperator = "||" | "&&" | "??";
-
-export type BinaryOperator = "==" | "!=" | "===" | "!==" | "<" | "<=" | ">" | ">=" | "<<" | ">>" | ">>>" | "+" | "-" | "*" | "/" | "%" | "|" | "^" | "&" | "in" | "instanceof" | "**";
-
-export type AssignmentOperator = "=" | "+=" | "-=" | "*=" | "/=" | "%=" | "<<=" | ">>=" | ">>>=" | "|=" | "^=" | "&=" | "&&=" | "||=" | "??=" | "**=";
-
-
 export type Atom = string;
 export type CompactStr = string;
 
@@ -1351,6 +1301,67 @@ export interface SourceType {
     moduleKind: ModuleKind;
     variant: LanguageVariant;
     alwaysStrict: boolean;
+}
+
+
+export type ScopeId = number;
+
+
+
+export type SymbolId = number;
+export type SymbolFlags = unknown;
+
+
+
+export type AstNodeId = number;
+export type NodeFlags = {
+    JSDoc: 1,
+    Class: 2,
+    HasYield: 4
+};
+
+
+
+export type ReferenceId = number;
+export type ReferenceFlag = {
+    None: 0,
+    Read: 0b1,
+    Write: 0b10,
+    Type: 0b100,
+    ReadWrite: 0b11
+}
+
+
+export type UpdateOperator = "++" | "--";
+
+export type UnaryOperator = "-" | "+" | "!" | "~" | "typeof" | "void" | "delete";
+
+export type LogicalOperator = "||" | "&&" | "??";
+
+export type BinaryOperator = "==" | "!=" | "===" | "!==" | "<" | "<=" | ">" | ">=" | "<<" | ">>" | ">>>" | "+" | "-" | "*" | "/" | "%" | "|" | "^" | "&" | "in" | "instanceof" | "**";
+
+export type AssignmentOperator = "=" | "+=" | "-=" | "*=" | "/=" | "%=" | "<<=" | ">>=" | ">>>=" | "|=" | "^=" | "&=" | "&&=" | "||=" | "??=" | "**=";
+
+export interface ParserOptions {
+    sourceType?: "script" | "module";
+    sourceFilename?: string;
+}
+
+export interface ParseResult {
+    program: Program;
+    errors: Diagnostic[];
+}
+
+export interface ParseResult2 {
+    file_info_serialized: FileInfo;
+    errors: Diagnostic[];
+}
+
+export interface Diagnostic {
+    start: number;
+    end: number;
+    severity: string;
+    message: string;
 }
 
 /**
