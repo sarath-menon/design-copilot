@@ -1,14 +1,14 @@
 import React from "react";
 import { promises as fs } from "fs";
 
-import * as wasm_module from "../public/wasm/index";
-
 export default async function WasmDemo({ number }: { number: number }) {
   const code = await fs.readFile(
     process.cwd() +
       "/lib/ui/apps/www/__registry__/default/example/card-demo.tsx",
     "utf8"
   );
+
+  const wasm_module = await import("../public/wasm/index");
 
   const { parseSync, add, getFileInfo } = wasm_module;
 
