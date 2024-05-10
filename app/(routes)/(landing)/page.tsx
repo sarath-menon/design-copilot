@@ -1,5 +1,7 @@
 import ChatBox from "@/app/(routes)/library/_components/chat-box";
-import { MouseListenerComponent } from "@/components/mouse-listener";
+import MouseListener, {
+  MouseListenerComponent,
+} from "@/components/mouse-listener";
 import {
   PageHeader,
   PageHeaderDescription,
@@ -26,7 +28,7 @@ export default function LandingPage() {
         <WasmDemo number={2} />
       </Suspense>
 
-      {/* <MouseListenerComponent number={2} /> */}
+      <MouseListener number={2} />
     </div>
   );
 }

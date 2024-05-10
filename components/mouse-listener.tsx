@@ -12,11 +12,7 @@ function MouseListenerComponent({ number }: { number: number }) {
       const wasmModule = await import("../public/wasm/index_bg.wasm");
       wasm_js.__wbg_set_wasm(wasmModule);
 
-      const resultJson = wasm_js.getFileInfo("let foo;", {
-        sourceFilename: "card.tsx",
-        sourceType: "script",
-      });
-      console.log(resultJson.file_info_serialized);
+      // wasm_js.mouse_listener();
     }
 
     initializeWasm();
