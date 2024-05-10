@@ -1,6 +1,7 @@
 "use server";
 import { Component } from "@/app/types/fs";
 import { promises as fs } from "fs";
+import path from "path";
 
 export async function getComponentInfo(prompt: string, path: string) {
   const url = `http://127.0.0.1:8000/question/?file_path=${encodeURIComponent(
@@ -59,8 +60,9 @@ export async function exampleFiles(path?: string) {
   }
 }
 
-export async function readFile(path: string) {
-  const file = await fs.readFile(process.cwd() + path, "utf8");
+export async function readFile(relativePath: string) {
+  const absolutePath = path.resolve(__dirname, relativePath);
+  const file = await fs.readFile(absolutePath, "utf8");
   return file;
 }
 
