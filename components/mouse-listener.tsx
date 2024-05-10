@@ -34,8 +34,15 @@ function MouseListenerComponent({ number }: { number: number }) {
 
   return (
     <div>
-      <Button onClick={() => console.log(wasm_js.add(1, 2))}>Click me</Button>
-      <Button onClick={getFileInfo_}>Click me</Button>
+      <Button onClick={() => console.log(wasm_js.add(1, 2))}>Add</Button>
+      <Button onClick={getFileInfo_}>File info</Button>
+      <Button
+        onClick={async () =>
+          console.log(await wasm_js.api_call("sarath-menon"))
+        }
+      >
+        Api call
+      </Button>
     </div>
   );
 }
