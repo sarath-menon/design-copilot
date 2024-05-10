@@ -1,6 +1,8 @@
 import React from "react";
 import { promises as fs } from "fs";
 
+import * as wasm_module from "../public/wasm/index.js";
+
 export default async function WasmDemo({ number }: { number: number }) {
   const code = await fs.readFile(
     process.cwd() +
@@ -8,9 +10,7 @@ export default async function WasmDemo({ number }: { number: number }) {
     "utf8"
   );
 
-  const wasm_module = await import("../public/wasm/index");
-
-  const { parseSync, add, getFileInfo } = wasm_module;
+  const { add, getFileInfo } = wasm_module;
 
   const startTime = performance.now();
   const result = getFileInfo(code, {
