@@ -8,6 +8,7 @@ import {
   PageHeaderHeading,
 } from "@/components/page-header";
 import WasmDemo from "@/components/wasm-demo";
+import WebWorker from "@/components/web-worker";
 import { Suspense } from "react";
 
 export default function LandingPage() {
@@ -29,6 +30,8 @@ export default function LandingPage() {
       </Suspense>
 
       <MouseListener number={2} />
+
+      <WebWorker />
     </div>
   );
 }
