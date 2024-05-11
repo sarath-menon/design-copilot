@@ -1,5 +1,7 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { useEffect, useRef, useCallback } from "react";
 
 export default function WebWorker() {
@@ -7,21 +9,43 @@ export default function WebWorker() {
 
   useEffect(() => {
     workerRef.current = new Worker(new URL("../worker1.ts", import.meta.url));
-    workerRef.current.onmessage = (event: MessageEvent<number>) =>
-      alert(`WebWorker Response => ${event.data}`);
+
+    // workerRef.current.onmessage = (event: MessageEvent<number>) =>
+    //   alert(`WebWorker Response => ${event.data}`);
+
+    workerRef.current.onmessage = (event: MessageEvent<number>) => {
+      console.log("Worker said: " + event.data);
+    };
+
     return () => {
       workerRef.current?.terminate();
     };
   }, []);
 
-  const handleWork = useCallback(async () => {
-    workerRef.current?.postMessage(100000);
-  }, []);
+  //   const handleWork = useCallback(async () => {
+  //     workerRef.current?.postMessage(100000);
+  //   }, []);
+
+  const handleInputChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const value = e.target.value;
+      workerRef.current?.postMessage(value);
+    },
+    []
+  );
 
   return (
     <>
       <p>Do work in a WebWorker!</p>
-      <button onClick={handleWork}>Calculate PI</button>
+      {/* <Button onClick={handleWork}>Calculate PI</Button> */}
+
+      <div id="wrapper">
+        <h1>Main Thread/Wasm Web Worker Interaction</h1>
+
+        <Input onChange={handleInputChange} type="text" id="inputNumber" />
+
+        <div id="resultField"></div>
+      </div>
     </>
   );
 }

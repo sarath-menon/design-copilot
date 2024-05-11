@@ -32,6 +32,14 @@ export default function LandingPage() {
       <MouseListener number={2} />
 
       <WebWorker />
+
+      {/* <div id="wrapper">
+        <h1>Main Thread/Wasm Web Worker Interaction</h1>
+
+        <input type="text" id="inputNumber" />
+
+        <div id="resultField"></div>
+      </div> */}
     </div>
   );
 }
