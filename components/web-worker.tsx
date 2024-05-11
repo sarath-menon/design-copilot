@@ -37,16 +37,11 @@ export default function WebWorker() {
 
   return (
     <>
-      <p>Do work in a WebWorker!</p>
       {/* <Button onClick={handleWork}>Calculate PI</Button> */}
 
-      <div id="wrapper">
-        <h1>Main Thread/Wasm Web Worker Interaction</h1>
+      <h1>Main Thread/Wasm Web Worker Interaction</h1>
 
-        <Input onChange={handleInputChange} type="text" id="inputNumber" />
-
-        <div id="resultField"></div>
-      </div>
+      <Input onChange={handleInputChange} type="text" id="inputNumber" />
     </>
   );
 }
