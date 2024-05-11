@@ -1,6 +1,6 @@
 // This is a module worker, so we can use imports (in the browser too!)
 import { pi } from "./lib/utils";
-import * as wasm_js from "./public/web_worker/wasm_in_web_worker.js";
+import * as wasm_js from "./public/web_worker/wasm_backend.js";
 
 // addEventListener("message", (event: MessageEvent<number>) => {
 //   postMessage(pi(event.data));
