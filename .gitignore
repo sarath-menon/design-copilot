@@ -39,3 +39,6 @@ next-env.d.ts
 /lib/copied
 # Turborepo
 .turbo
+
+/wasm_backend/target
+/wasm_backend/pkg

@@ -1,0 +1,28 @@
+[package]
+name = "wasm_backend"
+version = "0.1.0"
+edition = "2021"
+description = "A simple example of using Rust to generate WebAssembly that can be run in a web worker."
+repository = ""
+license = "MIT OR Apache-2.0"
+readme = "README.md"
+keywords = ["webassembly", "wasm", "wasm-bindgen", "web-worker"]
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+wasm-bindgen = "0.2.92"
+console_error_panic_hook = { version = "0.1.6", optional = true }
+
+[dependencies.web-sys]
+version = "0.3.4"
+features = [
+    'console',
+    'Document',
+    'HtmlElement',
+    'HtmlInputElement',
+    'MessageEvent',
+    'Window',
+    'Worker',
+]

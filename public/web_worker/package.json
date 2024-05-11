@@ -1,0 +1,28 @@
+{
+  "name": "wasm_backend",
+  "description": "A simple example of using Rust to generate WebAssembly that can be run in a web worker.",
+  "version": "0.1.0",
+  "license": "MIT OR Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "files": [
+    "wasm_backend_bg.wasm",
+    "wasm_backend.js",
+    "wasm_backend_bg.js",
+    "wasm_backend.d.ts"
+  ],
+  "module": "wasm_backend.js",
+  "types": "wasm_backend.d.ts",
+  "sideEffects": [
+    "./wasm_backend.js",
+    "./snippets/*"
+  ],
+  "keywords": [
+    "webassembly",
+    "wasm",
+    "wasm-bindgen",
+    "web-worker"
+  ]
+}
