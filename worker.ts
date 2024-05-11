@@ -1,13 +1,13 @@
 // This is a module worker, so we can use imports (in the browser too!)
 import { pi } from "./lib/utils";
-import * as wasm_module from "./public/web_worker/wasm_in_web_worker.js";
+import * as wasm_js from "./public/web_worker/wasm_in_web_worker.js";
 
 // addEventListener("message", (event: MessageEvent<number>) => {
 //   postMessage(pi(event.data));
 // });
 
 async function init_wasm_in_worker() {
-  const { NumberEval } = wasm_module;
+  const { NumberEval } = wasm_js;
 
   // Create a new object of the `NumberEval` struct.
   var num_eval = NumberEval.new();
